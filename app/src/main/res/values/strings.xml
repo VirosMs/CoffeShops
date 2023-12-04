@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CoffeShops</string>
+    <string name="imagen_comida">Imagen comida</string>
+    <string name="nombre_comida">Nombre Comida</string>
+    <string name="rating">4.5</string>
+    <string name="direccion_comida">St. Italy, Rome</string>
+    <string name="Reservar">Reservar</string>
+</resources>
