@@ -13,19 +13,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder>{
-    private final List<String> names;
-    private final List<String> locations;
-    private final List<Integer> images;
-    private final List<Float> ratings;
+    private List<String> names;
+    private List<String> locations;
+    private List<Integer> images;
+    private List<Float> ratings;
 
-    public CardAdapter(List<String> names, List<String> locations, List<Integer> images, List<Float> ratings){
+    public CardAdapter(List<String> names, List<String> locations, List<Integer> images){
         this.names = names;
         this.locations = locations;
         this.images = images;
-        this.ratings = ratings;
+        this.ratings = Arrays.asList(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0f, 0f);
     }
 
 
@@ -54,16 +55,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.img.setImageResource(images.get(position));
         holder.address.setText(locations.get(position));
         holder.ratingBar.setRating(ratings.get(position));
-        holder.rating.setVisibility(View.GONE);
+
         holder.rating.setText(String.valueOf(ratings.get(position)));
 
 
-        holder.ratingBar.setOnTouchListener((v, e) -> {
-            if (e.getAction() == MotionEvent.ACTION_UP)
-                holder.rating.setVisibility(View.GONE);
-            v.performClick();
-            return true;
-        });
+        holder.ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser)
+                -> holder.rating.setText(String.valueOf(rating)));
     }
 
     /**
